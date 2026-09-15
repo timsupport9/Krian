@@ -1,0 +1,12 @@
+node_modules/
+.pnp
+.env
+.env.local
+logs/
+*.log
+storage/
+coverage/
+.vscode/
+.idea/
+*.swp
+.DS_Store
