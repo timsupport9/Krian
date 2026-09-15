@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS appointments (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  expert_id INT NOT NULL,
+  user_id INT NOT NULL,
+  title VARCHAR(255),
+  description LONGTEXT,
+  scheduled_at TIMESTAMP NOT NULL,
+  duration_minutes INT DEFAULT 60,
+  status ENUM('scheduled', 'in_progress', 'completed', 'cancelled') DEFAULT 'scheduled',
+  meeting_link VARCHAR(255),
+  notes LONGTEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (expert_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_expert_id (expert_id),
+  INDEX idx_user_id (user_id),
+  INDEX idx_scheduled_at (scheduled_at),
+  INDEX idx_status (status)
+);
